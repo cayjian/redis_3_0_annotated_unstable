@@ -48,13 +48,16 @@ typedef char *sds;
  * 保存字符串对象的结构
  */
 struct sdshdr {
-    //
+    //记录buf数组中已使用字节的数量
+    //等于SDS所保存字符串的长度
     // buf 中已占用空间的长度
     int len;
 
+    //记录buf数组中未使用字节的数量
     // buf 中剩余可用空间的长度
     int free;
 
+    //字节数组，用于保存字符串 size(buf)=len + free + 1，1为结束符
     // 数据空间
     char buf[];
 };
